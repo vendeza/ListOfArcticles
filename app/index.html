@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="editor" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Article editor</title>
+    <link rel="stylesheet" href="app.css">
+
+</head>
+
+<body ng-controller="EditorCtrl">
+
+    <div class="container articale-editor">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <ul class="nav nav-pils navbar-left">
+                        <li role="presentation" class="active"><a href="#">Home</a></li>
+                    </ul>
+                    <ul class="nav nav-pils navbar-right">
+                        <li role="presentation"><a href="#">Logout <span class="glyphicon glyphicon-log-out" ></span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row offset-top-10">
+            <div class="col-sm-3 col-md-3">
+                <categories-list></categories-list>
+            </div>
+            <div class="col-sm-9 col-md-9">
+                <ng-view></ng-view>
+                <pending ng-if="isLoading"></pending>
+            </div>
+        </div>
+    </div>
+    <window></window>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

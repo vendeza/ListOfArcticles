@@ -1,0 +1,98 @@
+<div class="eui-grid-head-cell-title"
+    ng-click="onSortColumn(column, $event)">
+    {{ column.title }}
+</div>
+<div class="eui-icon eui-icon-funnel eui-t-default eui-s-expanded"
+    ng-if="column.filterType !== 'none'"
+    ng-click="onOpenFilterPanel($event, column)"></div>
+<div class="eui-icon eui-icon-arrow eui-t-default"
+    ng-class="{'eui-s-asc': column.sort === 'asc', 'eui-s-desc': column.sort === 'desc'}"></div>
+<div class="eui-grid-resize-handler" ng-if="resizable"></div>
+
+<div class="eui-grid-head-cell-panel" ng-class="{'eui-s-visible': column.isExpanded}">
+    <div ng-if="column.isExpanded">
+        <div class="eui-grid-panel-row eui-grid-panel-sort" ng-hide="column.noSort">
+            <div class="eui-grid-panel-sort-item" ng-click="onSetSortColumn(column, 'asc', $event)">
+                <div class="eui-icon eui-icon-fat-arrow-down eui-t-default"></div>
+                Сортировать A &mdash; Я
+            </div>
+            <div class="eui-grid-panel-sort-item" ng-click="onSetSortColumn(column, 'desc', $event)">
+                <div class="eui-icon eui-icon-fat-arrow-up eui-t-default"></div>
+                Сортировать Я &mdash; А
+            </div>
+        </div>
+        <div class="eui-grid-panel-row eui-grid-panel-filter" ng-if="column.filterType !== 'none'">
+            <div class="eui-grid-panel-filter-title">Фильтр</div>
+            <div ng-switch="column.filterType">
+                <div ng-switch-when="custom">
+                    <div ng-include src="column.headFilterUrl"></div>
+                </div>
+                <div class="eui-input-icon-group eui-input-row" ng-switch-when="text">
+                    <div class="eui-icon eui-m-append eui-icon-search" ng-class="theme"></div>
+                    <input type="text"
+                        class="eui-input"
+                        ng-keyup="$event.keyCode == 13 && onApplyFilterPanel(column)"
+                        ng-class="theme"
+                        ng-model="column.filterValue"
+                        placeholder="поиск" />
+                </div>
+                <div class="eui-input-icon-group eui-input-row" ng-switch-when="date">
+                    <div class="eui-icon eui-m-append eui-icon-calendar" ng-class="theme"></div>
+                    <input type="text"
+                        eui-datepicker
+                        ng-keyup="$event.keyCode == 13 && onApplyFilterPanel(column)"
+                        ng-model="column.filterValue"
+                        ng-class="theme"
+                        class="eui-input" />
+                </div>
+                <div ng-switch-when="checkboxlist">
+                    <div class="eui-scroll-panel eui-grid-panel-filter-checkboxlist">
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}" ng-model="all" label="Выделить все"></eui-checkbox>
+                        </div>
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}"  ng-model="value1" label="Значение 1"></eui-checkbox>
+                        </div>
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}"  ng-model="value2" label="Значение 2"></eui-checkbox>
+                        </div>
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}"  ng-model="value3" label="Значение 3"></eui-checkbox>
+                        </div>
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}"  ng-model="value4" label="Значение 4"></eui-checkbox>
+                        </div>
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}"  ng-model="value5" label="Значение 5"></eui-checkbox>
+                        </div>
+                        <div class="eui-checlboxlist-item">
+                            <eui-checkbox theme="{{theme}}"  ng-model="value6" label="Значение 6"></eui-checkbox>
+                        </div>
+                    </div>
+                    <div class="eui-grid-panel-filter-count">3 из 6 выбрано</div>
+                </div>
+                <div ng-switch-when="combobox" class="eui-input-row">
+                    <eui-combobox
+                        theme="{{theme}}"
+                        ng-model="column.filterValue"
+                        display-property="'displayText'"
+                        optional="true">
+                        <eui-comboitems items="column.filterValues"></eui-comboitems>
+                    </eui-combobox>
+                </div>
+            </div>
+            <div class="eui-filter-panel-buttons">
+                <div class="eui-button-wrapper">
+                    <button type="button"
+                        class="eui-button eui-t-grey"
+                        ng-click="onCloseFilterPanel(column)">Отмена</button>
+                </div>
+                <div class="eui-button-wrapper">
+                    <button type="submit"
+                        ng-click="onApplyFilterPanel(column)"
+                        class="eui-button eui-t-grey">Применить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

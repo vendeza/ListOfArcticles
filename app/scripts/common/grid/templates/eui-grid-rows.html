@@ -1,0 +1,46 @@
+<div style="margin-top: -1px;">
+    <table class="eui-table"
+        style="white-space: nowrap; width: 1px;"
+        ng-class="gridCtrl.theme">
+        <colgroup>
+            <col width="32px" ng-if="gridCtrl.selectType !== 'none'" />
+            <col ng-repeat="col in gridCtrl.columns" ng-style="{ width: col.width }" />
+        </colgroup>
+        <tbody class="eui-table-body" ng-class="{'eui-m-truncate-text': truncateText }">
+            <tr class="eui-table-row"
+                ng-dblclick="onRowClicked({ row: row })"
+                ng-click="gridCtrl.deselectRow(row)"
+                ng-class="{'eui-s-selected': isRowSelected(row)}"
+                ng-repeat="row in gridCtrl.rows">
+                <td class="eui-table-cell eui-m-cell" ng-if="gridCtrl.selectType !== 'none'">
+                    <label class="eui-checkbox-label"
+                        ng-if="gridCtrl.selectType !== 'single'"
+                        ng-class="gridCtrl.theme"
+                        ng-click="stopPropagation($event)">
+                        <div class="eui-checkbox">
+                            <input type="checkbox"
+                                ng-click="stopPropagation($event)"
+                                ng-change="gridCtrl.onChangeRow(row)"
+                                ng-model="row.selected" />
+                            <div class="eui-bg"></div>
+                        </div>
+                    </label>
+                    <label class="eui-radio-label"
+                        ng-if="gridCtrl.selectType === 'single'"
+                        ng-class="gridCtrl.theme">
+                        <div class="eui-radio">
+                            <input type="radio"
+                                ng-click="stopPropagation($event)"
+                                ng-value="row"
+                                ng-model="gridCtrl.selectedItem" />
+                            <div class="eui-bg"></div>
+                        </div>
+                    </label>
+                </td>
+                <td class="eui-table-cell" ng-repeat="col in gridCtrl.columns | orderBy:'order'">
+                    {{::row._renderData[col.name]}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

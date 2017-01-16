@@ -1,0 +1,32 @@
+<div class="eui-grid-head-wrapper">
+    <div class="eui-grid-panel-bg" ng-click="closeCurrentPanel()" ng-if="currentPanel"></div>
+    <div class="eui-grid-drag-handler"></div>
+    <div class="eui-grid-column-place-mark"></div>
+    <div class="eui-grid-head eui-t-default">
+        <div class="eui-grid-head-cell eui-m-with-checkbox"
+            style="padding-right: 3px;"
+            ng-style="{ minWidth: gridCtrl.selectType !== 'none' ? 33 : 'auto' }"
+            ng-if="gridCtrl.selectType !== 'none'">
+            <label class="eui-checkbox-label"
+                ng-if="gridCtrl.selectType === 'multiple'"
+                ng-class="[gridCtrl.theme, gridCtrl.disableSelectAll ? 'eui-s-disabled' : '']">
+                <div class="eui-checkbox">
+                    <input type="checkbox"
+                        ng-disabled="gridCtrl.disableSelectAll"
+                        ng-click="gridCtrl.toggleSelectAll()"
+                        ng-model="gridCtrl.allSelected" />
+                    <div class="eui-bg"></div>
+                </div>
+            </label>
+        </div>
+        <div eui-grid-head-cell
+            ng-repeat="col in gridCtrl.columns"
+            theme="gridCtrl.theme"
+            column="col"
+            resizable="{{ ::resizable }}"
+            on-sort="onSetSortColumn(col, direction, $event)"
+            on-open-filter="onOpenFilter(column)"
+            on-apply-filter="onApplyFilterPanel(col)"></div>
+        <div class="eui-grid-head-cell" ng-show="config.actionsColumn" style="width: 85px;"></div>
+    </div>
+</div>

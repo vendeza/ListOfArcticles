@@ -1,0 +1,127 @@
+<div style="margin-top: -1px;">
+    <table class="eui-table"
+        ng-class="gridCtrl.theme"
+        style="white-space: nowrap; width: 1px;">
+        <colgroup>
+            <col width="32px" ng-if="gridCtrl.selectType !== 'none'" />
+            <col ng-repeat="col in gridCtrl.columns" ng-style="{ width: col.width }" />
+            <col width="85px" ng-if="showButtons" />
+        </colgroup>
+        <tbody class="eui-table-body" ng-class="{'eui-m-truncate-text': truncateText }">
+            <tr class="eui-row-empty" ng-if="gridCtrl.rows.length === 0">
+                <td ng-if="gridCtrl.selectType !== 'none'"></td>
+                <td class="eui-cell-empty" colspan="{{gridCtrl.columns.length - 1}}">
+                    Нет записей для отображения
+                </td>
+            </tr>
+            <tr class="eui-table-row eui-m-editable"
+                ng-class="{'eui-s-selected': isRowSelected(row)}"
+                ng-repeat="row in gridCtrl.rows">
+                <td class="eui-table-cell eui-m-cell" ng-if="gridCtrl.selectType !== 'none'">
+                    <label class="eui-checkbox-label"
+                        ng-if="gridCtrl.selectType !== 'single'"
+                        ng-class="[gridCtrl.theme, globalEditMode ? 'eui-s-disabled' : '']"
+                        ng-click="stopPropagation($event)">
+                        <div class="eui-checkbox">
+                            <input type="checkbox"
+                                ng-click="stopPropagation($event)"
+                                ng-disabled="globalEditMode"
+                                ng-change="gridCtrl.onChangeRow(row)"
+                                ng-model="row.selected" />
+                            <div class="eui-bg"></div>
+                        </div>
+                    </label>
+                    <label class="eui-radio-label"
+                        ng-if="gridCtrl.selectType === 'single'"
+                        ng-class="gridCtrl.theme">
+                        <div class="eui-radio">
+                            <input type="radio"
+                                ng-click="stopPropagation($event)"
+                                ng-value="row"
+                                ng-model="selectedItem" />
+                            <div class="eui-bg"></div>
+                        </div>
+                    </label>
+                </td>
+                <td class="eui-table-cell" ng-repeat="col in gridCtrl.columns | orderBy:'order'">
+                    <span ng-if="!isEditMode(row, col)">{{row._renderData[col.name]}}</span>
+                    <div class="eui-input-wrapper" ng-if="isEditMode(row, col)" ng-switch on="col.filterType">
+                        <div ng-switch-when="custom">
+                            <div ng-include src="col.filterUrl"></div>
+                        </div>
+                        <div class="eui-input-icon-group eui-input-row" ng-switch-when="date">
+                            <div class="eui-icon eui-m-append eui-icon-calendar" ng-class="gridCtrl.theme"></div>
+                            <input type="text"
+                                eui-datepicker
+                                format="DD.MM.YYYY"
+                                ng-model="row[col.name]"
+                                ng-class="gridCtrl.theme"
+                                class="eui-input" />
+                        </div>
+                        <div ng-switch-when="combobox" class="eui-input-row">
+                            <eui-combobox
+                                theme="{{gridCtrl.theme}}"
+                                ng-model="row[col.name]"
+                                display-property="'displayText'"
+                                optional="!col.required">
+                                <eui-comboitems items="col.filterValues"></eui-comboitems>
+                            </eui-combobox>
+                        </div>
+                        <input type="text"
+                            ng-switch-default
+                            ng-change="gridCtrl._renderRow(row, $index)"
+                            ng-model="row[col.name]"
+                            class="eui-input"
+                            ng-class="gridCtrl.theme" />
+                    </div>
+                </td>
+                <td class="eui-table-cell eui-m-control-cell eui-m-control-buttons" ng-if="showButtons">
+                    <div ng-show="!isEditMode(row, col)">
+                        <button type="button"
+                            class="eui-button eui-m-icon-only"
+                            ng-class="config.theme"
+                            ng-click="onBeginEdit(row)">
+                            <div class="eui-icon">
+                                <svg viewBox="0 0 32 32" class="eui-icon-svg">
+                                   <use xlink:href="/emias-ui/emias.ui.sprite.svg#eui-icon-edit"></use>
+                                </svg>
+                            </div>
+                        </button>
+                        <button type="button"
+                            class="eui-button eui-m-icon-only"
+                            ng-class="config.theme"
+                            ng-click="onDelete({row: row})">
+                            <div class="eui-icon">
+                                <svg viewBox="0 0 32 32" class="eui-icon-svg">
+                                   <use xlink:href="/emias-ui/emias.ui.sprite.svg#eui-icon-delete"></use>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                    <div ng-show="isEditMode(row, col)">
+                        <button type="button"
+                            class="eui-button eui-m-icon-only"
+                            ng-class="config.theme"
+                            ng-click="onSaveEdit(row)">
+                            <div class="eui-icon">
+                                <svg viewBox="0 0 32 32" class="eui-icon-svg">
+                                   <use xlink:href="/emias-ui/emias.ui.sprite.svg#eui-icon-edit-item"></use>
+                                </svg>
+                            </div>
+                        </button>
+                        <button type="button"
+                            class="eui-button eui-m-icon-only"
+                            ng-class="config.theme"
+                            ng-click="onCancelEdit(row)">
+                            <div class="eui-icon">
+                                <svg viewBox="0 0 32 32" class="eui-icon-svg">
+                                   <use xlink:href="/emias-ui/emias.ui.sprite.svg#eui-icon-undo"></use>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
