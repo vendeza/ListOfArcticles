@@ -40,7 +40,7 @@ var editorUnitJS = [
     'app/scripts/common/**/*.js',
     'app/scripts/editorUnit/_*.js',
     'app/scripts/editorUnit/components/**/*.js',
-    'app/scripts/editorUnit/*.js',
+    'app/scripts/editorUnit/*.js'
 ];
 var editorUnitTemplates = ['app/scripts/editorUnit/*.html', 'app/scripts/editorUnit/components/**/*.html'];
 
@@ -66,7 +66,7 @@ var editorContentJS = [
     'app/scripts/common/**/*.js',
     'app/scripts/editorContent/_*.js',
     'app/scripts/editorContent/components/**/*.js',
-    'app/scripts/editorContent/*.js',
+    'app/scripts/editorContent/*.js'
 ];
 var editorContentTemplates = ['app/scripts/editorContent/*.html', 'app/scripts/editorContent/components/**/*.html'];
 
