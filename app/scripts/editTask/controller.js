@@ -7,11 +7,18 @@
     EditTaskCtrl.$inject = ['$scope', '$location'];
 
     function EditTaskCtrl($scope, $location) {
-
+        this.task = {
+            title: '',
+            icon: null,
+            type: '',
+            description: '',
+            point: '',
+            answer: [],
+            hint: '',
+            penaltyPoint: null
+        };
     }
 
-    EditTaskCtrl.prototype = {
-
-    }
+    EditTaskCtrl.prototype = {}
 
 })(angular, rangy);

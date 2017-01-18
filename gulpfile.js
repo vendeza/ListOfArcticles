@@ -43,7 +43,7 @@ var editTaskSetJS = [
     'app/scripts/editTaskSet/components/**/*.js',
     'app/scripts/editTaskSet/*.js'
 ];
-var editTaskSetTemplates = ['app/scripts/editTaskSet/*.html', 'app/scripts/editTaskSet/components/**/*.html'];
+var editTaskSetTemplates = ['app/scripts/editTaskSet/*.html', 'app/scripts/common/**/*.html', 'app/scripts/editTaskSet/components/**/*.html'];
 
 var editTaskJS = [
 
@@ -69,7 +69,7 @@ var editTaskJS = [
     'app/scripts/editTask/components/**/*.js',
     'app/scripts/editTask/*.js'
 ];
-var editTaskTemplates = ['app/scripts/editTask/*.html', 'app/scripts/editTask/components/**/*.html'];
+var editTaskTemplates = ['app/scripts/editTask/*.html', 'app/scripts/common/**/*.html', 'app/scripts/editTask/components/**/*.html'];
 
 var taskSetListJS = [
 
@@ -95,7 +95,7 @@ var taskSetListJS = [
     'app/scripts/taskSetList/components/**/*.js',
     'app/scripts/taskSetList/*.js',
 ];
-var taskSetListTemplates = ['app/scripts/taskSetList/*.html', 'app/scripts/taskSetList/components/**/*.html'];
+var taskSetListTemplates = ['app/scripts/taskSetList/*.html', 'app/scripts/common/**/*.html', 'app/scripts/taskSetList/components/**/*.html'];
 
 var styles = [
     'app/styles/emias.ui.css',

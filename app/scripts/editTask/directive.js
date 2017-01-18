@@ -16,6 +16,7 @@
             controller: 'EditTaskCtrl',
             templateUrl: '/pages/index.html',
             link: function(scope, element, attrs, editTaskCtrl) {
+
             }
         };
     }

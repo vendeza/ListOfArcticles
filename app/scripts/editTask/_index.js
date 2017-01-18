@@ -3,6 +3,7 @@
         'ngResource',
         'ngRoute',
         'templates',
-        'angular-medium-editor']);
+        'angular-medium-editor',
+        'editor.common']);
 
 })(angular);
