@@ -23,6 +23,7 @@
     "gulp-uglify": "2.0.0",
     "merge-stream": "^1.0.0",
     "serve-static": "1.11.1",
+    "http-server": "^0.9.0",
     "browser-sync": "^2.18.2",
     "jasmine-core": "^2.4.1",
     "karma": "^1.3.0",
@@ -38,7 +39,7 @@
     "postupdate-deps": "bower update",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ./app",
+    "start": "http-server -a localhost -p 8000 -c-1 ./dist",
 
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

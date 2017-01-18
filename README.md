@@ -7,6 +7,9 @@
 * gulp run
 * http://localhost:9000
 
+### Сборка ###
+* gulp build
+
 ### Запуск тестов ###
 * unit tests: npm test
 * e2e tests: npm run protractor

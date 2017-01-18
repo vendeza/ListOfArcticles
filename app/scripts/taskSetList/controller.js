@@ -1,12 +1,12 @@
 (function (ng, rangy) {
     'use strict';
 
-    ng.module('editor.listUnits')
-        .controller('ListUnitsCtrl', ListUnitsCtrl);
+    ng.module('editor.taskSetList')
+        .controller('TaskSetListCtrl', TaskSetListCtrl);
 
-    ListUnitsCtrl.$inject = ['$scope', '$location'];
+    TaskSetListCtrl.$inject = ['$scope', '$location'];
 
-    function ListUnitsCtrl($scope, $location) {
+    function TaskSetListCtrl($scope, $location) {
         this.$location = $location;
 
         $scope.getFakeRows = function (length, page) {
@@ -90,7 +90,7 @@
 
     }
 
-    ListUnitsCtrl.prototype = {
+    TaskSetListCtrl.prototype = {
         onEditArticle: function () {
             this.$location.path('/article/edit/' + 123);
         }

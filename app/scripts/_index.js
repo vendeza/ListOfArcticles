@@ -4,9 +4,9 @@
         'ngRoute',
         'angular-medium-editor',
 
-        'editor.editorContent',
-        'editor.editorUnit',
-        'editor.listUnits',
+        'editor.editTask',
+        'editor.editTaskSet',
+        'editor.taskSetList',
         'editor.common'
     ]);
 

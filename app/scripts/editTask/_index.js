@@ -1,5 +1,5 @@
 (function (ng) {
-    ng.module('editor.editorContent', [
+    ng.module('editor.editTask', [
         'ngResource',
         'ngRoute',
         'templates',
